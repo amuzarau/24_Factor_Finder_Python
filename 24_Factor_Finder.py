@@ -15,14 +15,15 @@ while True: # Main program loop.
     if response.upper() == 'QUIT':
         sys.exit()
 
-    if not (response.isdecimal() and int(response) > 0):
-        continue
+    if not (response.isdecimal() and int(response) > 0):    # If the input does not satisfy both conditions (i.e., it's not a positive whole number), continue is executed.
+        continue    # continue skips the rest of the loop and prompts the user for new input, preventing invalid entries from causing errors or unexpected behavior in the factor-finding process.
     number = int(response)
 
     factors = []
 
     # Find the factors of number:
-    for i in range(1, int(math.sqrt(number)) + 1):
+    for i in range(1, int(math.sqrt(number)) + 1):  # Any factor greater than the square root must already have been paired with a smaller factor found earlier. That's why rather than checking every number from 1 to N, 
+                                                    # we only need to check up to √N. If we find a factor x, we automatically get its paired factor (N / x)
         if number % i == 0:   # If there's no remainder, it is a factor.
             factors.append(i)
             factors.append(number // i)
